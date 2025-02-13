@@ -1,0 +1,170 @@
+body {
+    font-family: sans-serif;
+    background-color: #000; /* 黑色背景 */
+    color: #fff; /* 白色文字 */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* 确保在小屏幕上也能占据整个视口 */
+}
+
+.game-container {
+    width: 95%; /* 宽度占据屏幕的95%，保证手机屏幕边缘留有空间 */
+    max-width: 480px; /* 最大宽度限制在480px，模拟手机屏幕宽度 */
+    background-color: #111; /* 容器背景颜色，略微深色 */
+    border: 1px solid #333; /* 边框 */
+    border-radius: 8px; /* 圆角 */
+    overflow: hidden; /* 裁剪超出容器的内容 */
+    display: flex;
+    flex-direction: column; /* 垂直布局 */
+    padding: 10px; /* 容器内边距 */
+    box-sizing: border-box; /* 包含内边距和边框在宽度内 */
+}
+
+/* 顶部功能按钮区域样式 */
+.top-buttons {
+    display: flex;
+    justify-content: space-around; /* 按钮均匀分布 */
+    padding: 5px 0;
+}
+
+.function-button {
+    background-color: #222;
+    color: #eee;
+    border: 1px solid #444;
+    border-radius: 5px;
+    padding: 5px 8px;
+    font-size: 0.8rem; /* 相对字体大小 */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    min-width: 20px; /* 最小宽度 */
+    text-align: center; /* 文本居中 */
+}
+
+.function-button:hover {
+    background-color: #333;
+}
+
+/* 人物信息区域样式 */
+.character-info {
+    background-color: #222;
+    border: 1px solid #444;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.info-title {
+    text-align: center;
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between; /* 标签和值左右对齐 */
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+}
+
+.info-label {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+/* 主要属性区域样式 */
+.main-attributes {
+    background-color: #222;
+    border: 1px solid #444;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.attributes-title {
+    text-align: center;
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+.attributes-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 三列网格布局 */
+    gap: 5px 10px; /* 行和列间距 */
+    font-size: 0.9rem;
+}
+
+.attribute-row {
+    display: contents; /* 让子元素跨越网格 */
+}
+
+.attribute-label {
+    text-align: right; /* 标签右对齐 */
+    margin-right: 5px;
+    font-weight: bold;
+}
+
+.attribute-value {
+    text-align: left; /* 值左对齐 */
+    /* 可以添加样式来区分空值和实际值，例如颜色 */
+}
+
+/* 当前所在地图区域样式 */
+.current-map {
+    background-color: #222;
+    border: 1px solid #444;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.map-label {
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+/* 底部菜单按钮区域样式 */
+.bottom-menu {
+    display: flex;
+    flex-wrap: wrap; /* 允许按钮换行 */
+    justify-content: space-around; /* 按钮均匀分布 (可以根据需要调整) */
+    padding: 10px 0;
+}
+
+.menu-button {
+    background-color: #333;
+    color: #eee;
+    border: 1px solid #555;
+    border-radius: 8px;
+    padding: 8px 15px;
+    margin: 5px; /* 按钮间距 */
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    /* flex-grow: 1; */   /* 移除 flex-grow */
+    flex-basis: 80px;  /* 添加 flex-basis */
+    text-align: center; /* 文本居中 */
+    min-width: 60px; /* 最小宽度 */
+}
+
+.menu-button:hover {
+    background-color: #444;
+}
+
+/* 响应式设计，针对小屏幕优化 (可以根据需要调整) */
+@media (max-width: 400px) {
+    .function-button, .menu-button {
+        font-size: 0.7rem; /* 更小的字体 */
+        padding: 4px 6px; /* 更小的内边距 */
+    }
+    .info-title, .attributes-title, .current-map {
+        font-size: 0.9rem; /* 更小的标题字体 */
+    }
+    .info-row, .attributes-grid {
+        font-size: 0.8rem; /* 更小的信息字体 */
+    }
+}
