@@ -1,81 +1,140 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>放置类游戏框架</title>    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>极简修真界面</title>
+    <style>
+        :root {
+            --main-text: #ffffff;
+            --border-base: #666;
+            --border-active: #fff;
+            --btn-bg: rgba(255,255,255,0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Microsoft YaHei', sans-serif;
+            touch-action: manipulation;
+        }
+
+        body {
+            background: #000;
+            color: var(--main-text);
+            max-width: 450px;
+            margin: 0 auto;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* 状态栏 */
+        .status-bar {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 15px;
+            background: rgba(0,0,0,0.95);
+            border-bottom: 1px solid var(--border-base);
+            font-size: 14px;
+        }
+
+        /* 增强导航 */
+        .super-nav {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            max-width: 450px;
+            background: rgba(0,0,0,0.97);
+            border-top: 1px solid var(--border-base);
+            padding: 10px 8px;
+            backdrop-filter: blur(3px);
+        }
+
+        .nav-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 6px;
+            margin-bottom: 8px;
+        }
+
+        /* 按钮样式 */
+        .btn {
+            padding: 10px 5px;
+            border: 1px solid var(--border-base);
+            border-radius: 6px;
+            color: var(--main-text);
+            background: var(--btn-bg);
+            font-size: 13px;
+            text-align: center;
+            white-space: nowrap;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .btn:active {
+            background: rgba(255,255,255,0.2);
+            border-color: var(--border-active);
+        }
+
+        .btn-emphasis {
+            border-width: 1.5px;
+            border-color: var(--main-text);
+            font-weight: 500;
+        }
+
+        /* 响应式调整 */
+        @media (max-width: 375px) {
+            .btn {
+                font-size: 12px;
+                padding: 8px 3px;
+            }
+            
+            .status-bar {
+                font-size: 13px;
+                padding: 10px 12px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="game-container">
-        <!-- 顶部功能按钮区域 -->
-        <div class="top-buttons">
-            <button class="function-button">功能1</button> <button class="function-button">功能2</button> <button class="function-button">功能3</button> <button class="function-button">功能4</button> <button class="function-button">功能5</button> <button class="function-button">功能6</button> <button class="function-button">功能7</button> <button class="function-button">功能8</button> <button class="function-button">功能9</button> <button class="function-button">功能10</button>        </div>
+    <!-- 状态栏 -->
+    <div class="status-bar">
+        <div>VIP0 | 3级 | 战力3496</div>
+        <div>钻399 | 币1001 | 设置</div>
+    </div>
 
-        <!-- 人物信息区域 -->
-        <div class="character-info">
-            <div class="info-title">—— 人物信息 ——</div>
-            <div class="info-row">
-                <span class="info-label">昵称:</span> <span class="info-value">Jordan</span>
-            </div>
-            <div class="info-row">
-                <span class="info-label">战斗力:</span> <span class="info-value" id="battle-power">1842</span>
-            </div>
-            <div class="info-row">
-                <span class="info-label">等级:</span> <span class="info-value" id="level">1</span>
-            </div>
-            <div class="info-row">
-                <span class="info-label">升级经验:</span> <span class="info-value" id="exp">0 / 31668</span>
-            </div>
-            <div class="info-row">
-                <span class="info-label">职业:</span> <span class="info-value" id="job">无</span>
-            </div>
-            <div class="info-row">
-                <span class="info-label">金币:</span> <span class="info-value" id="gold">99999</span>  <!-- 假设的金币，可以动态更新 -->
-            </div>
+    <!-- 增强导航 -->
+    <div class="super-nav">
+        <!-- 第一排 -->
+        <div class="nav-grid">
+            <button class="btn btn-emphasis">秘境探索</button>
+            <button class="btn">任务日志</button>
+            <button class="btn">功法阁</button>
+            <button class="btn btn-emphasis">灵宝阁</button>
+            <button class="btn">坐骑</button>
         </div>
-
-        <!-- 主要属性区域 (空白，等待动态填充) -->
-        <div class="main-attributes">
-            <div class="attributes-title">—— 主要属性 ——</div>
-            <div class="attributes-grid">
-                <div class="attribute-row">
-                    <span class="attribute-label">物攻</span> <span class="attribute-value" id="atk"></span>
-                    <span class="attribute-label">物防</span> <span class="attribute-value" id="def"></span>
-                    <span class="attribute-label">生命</span> <span class="attribute-value" id="hp"></span>
-                </div>
-                <div class="attribute-row">
-                    <span class="attribute-label">魔攻</span> <span class="attribute-value" id="magic-atk"></span>
-                    <span class="attribute-label">魔抗</span> <span class="attribute-value" id="magic-def"></span>
-                    <span class="attribute-label">魔法</span> <span class="attribute-value" id="mp"></span>
-                </div>
-                <div class="attribute-row">
-                    <span class="attribute-label">命中</span> <span class="attribute-value" id="hit"></span>
-                    <span class="attribute-label">闪避</span> <span class="attribute-value" id="dodge"></span>
-                    <span class="attribute-label">格挡</span> <span class="attribute-value" id="block"></span>
-                </div>
-                <div class="attribute-row">
-                    <span class="attribute-label">暴击</span> <span class="attribute-value" id="crit"></span>
-                    <span class="attribute-label">爆伤</span> <span class="attribute-value" id="crit-dmg"></span>
-                    <span class="attribute-label">抗暴</span> <span class="attribute-value" id="anti-crit"></span>
-                </div>
-                <div class="attribute-row">
-                    <span class="attribute-label">速度</span> <span class="attribute-value" id="speed"></span>
-                    <span class="attribute-label">幸运</span> <span class="attribute-value" id="luck"></span>
-                    <span class="attribute-label"></span> <span class="attribute-value"></span> <!-- 占位，保持对齐 -->
-                </div>
-            </div>
-        </div>
-
-        <!-- 当前所在地图区域 -->
-        <div class="current-map">
-            <span class="map-label">当前所在地图:</span> <span class="map-name" id="map-name">新手村</span>  <!-- 默认地图，可以动态更新 -->
-        </div>
-
-        <!-- 底部菜单按钮区域 -->
-        <div class="bottom-menu">
-            <button class="menu-button">背包</button> <button class="menu-button">装备</button> <button class="menu-button">技能</button> <button class="menu-button">队伍</button> <button class="menu-button">活动</button>
-            <button class="menu-button">电影</button> <button class="menu-button">领地</button> <button class="menu-button">排行榜</button> <button class="menu-button">空间</button> <button class="menu-button">商店</button>
+        
+        <!-- 第二排 -->
+        <div class="nav-grid">
+            <button class="btn">洞府</button>
+            <button class="btn btn-emphasis">渡劫</button>
+            <button class="btn">炼丹</button>
+            <button class="btn">论道</button>
+            <button class="btn btn-emphasis">拍卖</button>
         </div>
     </div>
+
+    <script>
+        // 动态布局适配
+        document.addEventListener('DOMContentLoaded', () => {
+            const adjustLayout = () => {
+                const nav = document.querySelector('.super-nav');
+                document.body.style.paddingBottom = nav.offsetHeight + 'px';
+            }
+            window.addEventListener('resize', adjustLayout);
+            adjustLayout();
+        });
+    </script>
 </body>
 </html>
